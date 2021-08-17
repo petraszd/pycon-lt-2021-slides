@@ -7,7 +7,12 @@
 [ext_resource path="res://Fonts/NotoSans-Italic-64.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Fonts/NotoSans-Bold-64.tres" type="DynamicFont" id=6]
 
-[node name="Slide_02" type="Node"]
+[node name="Slide_02" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MainWrapper" parent="." instance=ExtResource( 1 )]
 
@@ -40,10 +45,10 @@ custom_colors/default_color = Color( 0.133333, 0.223529, 0.054902, 1 )
 bbcode_enabled = true
 bbcode_text = "It is a [b]number[/b].
 
-The [b]set of integers[/b] consists of zero,, the whole numbers, and their additive inverses."
+The [b]set of integers[/b] consists of zero, the whole numbers, and their additive inverses."
 text = "It is a number.
 
-The set of integers consists of zero,, the whole numbers, and their additive inverses."
+The set of integers consists of zero, the whole numbers, and their additive inverses."
 fit_content_height = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MainWrapper/VBoxContainer"]
