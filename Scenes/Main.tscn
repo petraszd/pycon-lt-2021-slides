@@ -1,19 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Slides/Slide_01.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Entities/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Slides/Slide_02.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
 
-[node name="Slides" type="Node" parent="."]
-
-[node name="Slide_01" parent="Slides" instance=ExtResource( 1 )]
-visible = false
-
-[node name="Slide_02" parent="Slides" instance=ExtResource( 4 )]
-visible = false
+[node name="CurrentSlidePlace" type="Node" parent="."]
