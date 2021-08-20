@@ -33,11 +33,15 @@ __meta__ = {
 }
 
 [node name="TitleSeparator" parent="MainWrapper/VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_top = 140.0
+margin_right = 3640.0
+margin_bottom = 298.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainWrapper/VBoxContainer"]
-margin_top = 356.0
+margin_top = 306.0
 margin_right = 3640.0
-margin_bottom = 626.0
+margin_bottom = 576.0
 custom_fonts/italics_font = ExtResource( 5 )
 custom_fonts/bold_font = ExtResource( 6 )
 custom_fonts/normal_font = ExtResource( 4 )
@@ -52,15 +56,15 @@ The set of integers consists of zero, the whole numbers, and their additive inve
 fit_content_height = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MainWrapper/VBoxContainer"]
-margin_top = 634.0
+margin_top = 584.0
 margin_right = 3640.0
-margin_bottom = 884.0
+margin_bottom = 834.0
 custom_constants/margin_top = 250
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MainWrapper/VBoxContainer"]
-margin_top = 892.0
+margin_top = 842.0
 margin_right = 3640.0
-margin_bottom = 1072.0
+margin_bottom = 1022.0
 custom_fonts/italics_font = ExtResource( 5 )
 custom_fonts/bold_font = ExtResource( 6 )
 custom_fonts/normal_font = ExtResource( 4 )
