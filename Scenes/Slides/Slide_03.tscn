@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Entities/MainWrapper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/NotoSans-Regular-96.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Entities/TitleSeparator.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Entities/CTextEdit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/Roboto-Mono-48.tres" type="DynamicFont" id=5]
 
 [node name="Slide_03" type="Control"]
 anchor_right = 1.0
@@ -19,6 +20,8 @@ margin_left = 100.0
 margin_top = 100.0
 margin_right = 3740.0
 margin_bottom = 2060.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MainWrapper/VBoxContainer"]
 margin_right = 3640.0
@@ -33,9 +36,30 @@ margin_top = 140.0
 margin_right = 3640.0
 margin_bottom = 298.0
 
-[node name="CTextEdit" parent="MainWrapper/VBoxContainer" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MainWrapper/VBoxContainer"]
 margin_top = 306.0
 margin_right = 3640.0
 margin_bottom = 1960.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CTextEdit" parent="MainWrapper/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1770.0
+margin_bottom = 1654.0
+c_filename = "int_types.c"
+
+[node name="Label" type="Label" parent="MainWrapper/VBoxContainer/HBoxContainer"]
+margin_left = 1870.0
+margin_right = 3640.0
+margin_bottom = 1654.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.133333, 0.223529, 0.054902, 1 )
+text = "TODO"

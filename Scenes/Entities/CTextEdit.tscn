@@ -9,7 +9,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Hello 😀😃😄😁💩"
+custom_colors/function_color = Color( 0.419393, 0.86, 0.4042, 1 )
 highlight_current_line = true
 syntax_highlighting = true
 show_line_numbers = true
@@ -17,3 +17,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+color_string = Color( 0.996078, 0.882353, 0.2, 1 )
+color_type = Color( 0.741176, 0.796078, 0.227451, 1 )
+color_keyword = Color( 0.741176, 0.796078, 0.227451, 1 )
