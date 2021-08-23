@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Object",
+"class": "Util",
+"language": "GDScript",
+"path": "res://Scripts/Utils.gd"
+} ]
+_global_script_class_icons={
+"Util": ""
+}
+
 [application]
 
 config/name="PyCon LT 2021 Integers"
@@ -20,8 +30,9 @@ gdscript/warnings/treat_warnings_as_errors=true
 
 [display]
 
-window/size/width=3840
-window/size/height=2160
+window/size/width=2880
+window/size/height=1620
+window/size/fullscreen=true
 window/size/test_width=1920
 window/size/test_height=1080
 window/dpi/allow_hidpi=true

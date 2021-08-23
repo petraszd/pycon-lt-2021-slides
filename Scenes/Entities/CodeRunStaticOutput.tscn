@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/Roboto-Mono-36.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/CodeRunStaticOutput.gd" type="Script" id=2]
+
+[node name="Label" type="Label"]
+margin_left = 1870.0
+margin_right = 3640.0
+margin_bottom = 1654.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.133333, 0.223529, 0.054902, 1 )
+text = "Will be set by the script"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

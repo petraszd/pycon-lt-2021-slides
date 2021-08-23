@@ -9,7 +9,7 @@ export var color_keyword = Color(0.0, 0.0, 0.0)
 
 
 func _ready():
-    _set_text_from_file()
+    text = Util.get_file_content(c_filename)
 
     add_color_region('"', '"', color_string)
 
@@ -28,10 +28,3 @@ func _ready():
 func _unhandled_input(event):
     if has_focus() and event.is_action_released("ui_cancel"):
         release_focus()
-
-
-func _set_text_from_file():
-    var file = File.new()
-    file.open("res://CodeSamples/" + c_filename, File.READ)
-    text = file.get_as_text()
-    file.close()
