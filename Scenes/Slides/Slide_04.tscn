@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Entities/CTextEdit.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Entities/CodeRunStaticOutput.tscn" type="PackedScene" id=5]
 
-[node name="Slide_03" type="Control"]
+[node name="Slide_04" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -20,15 +20,13 @@ margin_left = 100.0
 margin_top = 50.0
 margin_right = 2780.0
 margin_bottom = 1570.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MainWrapper/VBoxContainer"]
 margin_right = 2680.0
 margin_bottom = 99.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.133333, 0.223529, 0.054902, 1 )
-text = "Integers in C"
+text = "Assembly"
 
 [node name="TitleSeparator" parent="MainWrapper/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -43,19 +41,16 @@ margin_bottom = 1520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 100
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CTextEdit" parent="MainWrapper/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1290.0
 margin_bottom = 1247.0
-c_filename = "int_types.c"
+c_filename = "assembly.c"
 
 [node name="CodeRunStaticOutput" parent="MainWrapper/VBoxContainer/HBoxContainer" instance=ExtResource( 5 )]
 margin_left = 1390.0
 margin_right = 2680.0
 margin_bottom = 1247.0
-out_filename = "int_types.c.out"
+out_filename = "assembly.c.out"

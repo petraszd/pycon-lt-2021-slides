@@ -7,6 +7,7 @@ var slides = [
     preload("res://Scenes/Slides/Slide_01.tscn").instance(),
     preload("res://Scenes/Slides/Slide_02.tscn").instance(),
     preload("res://Scenes/Slides/Slide_03.tscn").instance(),
+    preload("res://Scenes/Slides/Slide_04.tscn").instance(),
 ]
 var current_idx = NO_SLIDE
 var next_idx = NO_SLIDE
