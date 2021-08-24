@@ -20,3 +20,4 @@ __meta__ = {
 color_string = Color( 0.996078, 0.882353, 0.2, 1 )
 color_type = Color( 0.741176, 0.796078, 0.227451, 1 )
 color_keyword = Color( 0.741176, 0.796078, 0.227451, 1 )
+color_flow = Color( 0.1377, 0.67554, 0.81, 1 )

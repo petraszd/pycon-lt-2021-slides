@@ -5,7 +5,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "SwitchSlides"
-length = 2.0
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("CurrentSlidePlace:modulate")
 tracks/0/interp = 1
@@ -13,7 +13,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
+"times": PoolRealArray( 0, 1.6, 2.5 ),
 "transitions": PoolRealArray( 0.5, 0.5, 2 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -25,7 +25,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],

@@ -6,6 +6,7 @@ export var c_filename = ""
 export var color_string = Color(0.0, 0.0, 0.0)
 export var color_type = Color(0.0, 0.0, 0.0)
 export var color_keyword = Color(0.0, 0.0, 0.0)
+export var color_flow = Color(0.0, 0.0, 0.0)
 
 
 func _ready():
@@ -22,6 +23,10 @@ func _ready():
 
     add_keyword_color("return", color_keyword)
     add_color_region("#", ">", color_keyword)
+
+    add_keyword_color("if", color_flow)
+    add_keyword_color("else", color_flow)
+    add_keyword_color("while", color_flow)
 
 
 

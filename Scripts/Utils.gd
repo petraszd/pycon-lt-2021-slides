@@ -8,4 +8,6 @@ static func get_file_content(filename):
     var ret = file.get_as_text()
     file.close()
 
+    ret = ret.replacen("\t", "")
+
     return ret.rstrip("\n")

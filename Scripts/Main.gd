@@ -8,6 +8,7 @@ var slides = [
     preload("res://Scenes/Slides/Slide_02.tscn").instance(),
     preload("res://Scenes/Slides/Slide_03.tscn").instance(),
     preload("res://Scenes/Slides/Slide_04.tscn").instance(),
+    preload("res://Scenes/Slides/Slide_05.tscn").instance(),
 ]
 var current_idx = NO_SLIDE
 var next_idx = NO_SLIDE
@@ -21,6 +22,9 @@ func _ready():
 func _unhandled_input(event):
     var owner = $CurrentSlidePlace.get_focus_owner()
     if owner != null and owner.get_class() == "TextEdit":
+        return
+
+    if $AnimationPlayer.is_playing():
         return
 
     if _is_asking_for_next_slide(event):
