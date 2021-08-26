@@ -20,3 +20,8 @@ speed_test_py:
 	(time python3 speed_test.py) > temp.txt 2>&1
 	cat temp.txt | expand > speed_test.py.out
 	rm temp.txt
+
+overflow:
+	clang -Wall overflow.c
+	./a.out > overflow.c.out
+	rm ./a.out
