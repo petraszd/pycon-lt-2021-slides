@@ -3,8 +3,11 @@
 
 #include "pythonenv.h"
 
-static char stdout_buffer[2048 + 1];
-static size_t stdout_buffer_current_size = 0;
+
+#define STDOUT_BUFFER_SIZE 4096 /* 4 MB */
+
+static char stdout_buffer[STDOUT_BUFFER_SIZE + 1]; /* + 1 byte for '\0' */
+static size_t stdout_buffer_idx = 0;
 
 static PyObject* stdout_write(PyObject* mod, PyObject* args)
 {
@@ -26,13 +29,13 @@ static PyObject* stdout_write(PyObject* mod, PyObject* args)
     assert(utf8_str != NULL);
     assert(n_utf8_str >= n_py_str);
 
-    size_t stdout_available_space = 2048 - stdout_buffer_current_size;
+    size_t stdout_available_space = STDOUT_BUFFER_SIZE - stdout_buffer_idx;
     strncpy(
-            stdout_buffer + stdout_buffer_current_size,
+            stdout_buffer + stdout_buffer_idx,
             utf8_str,
             n_utf8_str > stdout_available_space ? stdout_available_space: n_utf8_str);
-    stdout_buffer[2048] = '\0';
-    stdout_buffer_current_size += n_utf8_str;
+    stdout_buffer[STDOUT_BUFFER_SIZE] = '\0';
+    stdout_buffer_idx += n_utf8_str;
 
     return Py_None;
 }
@@ -85,7 +88,7 @@ PyObject* create_stdout_capture_module()
 // pyenv_* functions
 // -----------------
 
-pyenv_init_result_e pyenv_init(char* error, size_t max_error_length)
+pyenv_init_result_e pyenv_init()
 {
     wchar_t *program_name = Py_DecodeLocale("Slides", NULL);
     if (program_name == NULL) {
@@ -101,6 +104,7 @@ pyenv_init_result_e pyenv_init(char* error, size_t max_error_length)
             "import sys\n"
             "import stdout_capture\n"
             "sys.stdout = stdout_capture\n"
+            "sys.stderr = stdout_capture\n"
             );
 
     return PYENV_INIT_OK;
@@ -109,21 +113,19 @@ pyenv_init_result_e pyenv_init(char* error, size_t max_error_length)
 void pyenv_deinit()
 {
     Py_Finalize();
-    /*if (Py_FinalizeEx() < 0) {*/
-        /*log_error_and_exit("Can not finalize");*/
-    /*}*/
+    /* Py_Finalize returns error on failure. But who cares. I am quiting anyway. */
 }
 
-void pyenv_update_buffer(char* buffer, size_t n_buffer)
+void pyenv_run_code(const char* input, size_t n_input, char* output, size_t n_output)
 {
-    PyRun_SimpleString(
-            "from datetime import datetime\n"
-            "print(datetime.now().isoformat())\n"
-            "for i in range(10):\n"
-            "    print(f'{i}. Hello Sailor')\n"
-            );
-
-    strncpy(buffer, stdout_buffer, n_buffer);
-    buffer[n_buffer - 1] = '\0';
+    PyRun_SimpleString(input);
+    size_t n = stdout_buffer_idx > n_output ? n_output : stdout_buffer_idx;
+    strncpy(output, stdout_buffer, n);
+    output[n] = '\0'; /* It is assumes that output size is n_output + 1 */
+    if (stdout_buffer_idx == 0) {
+        output[0] = '\0';
+    }
+    stdout_buffer[0] = '\0';
+    stdout_buffer_idx = 0;
 }
 

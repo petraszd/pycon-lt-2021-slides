@@ -12,7 +12,7 @@ typedef enum pyenv_init_result {
 
 pyenv_init_result_e pyenv_init();
 void pyenv_deinit();
-void pyenv_update_buffer(char* buffer, size_t n_buffer);
+void pyenv_run_code(const char* input, size_t n_input, char* output, size_t n_output);
 
 #endif /* ifndef PZ_GODOT_NSCRIPT_PYTHONENV */
 

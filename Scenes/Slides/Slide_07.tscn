@@ -34,3 +34,8 @@ margin_right = 2680.0
 margin_bottom = 265.0
 
 [node name="SimplePythonPlayground" parent="MainWrapper/VBoxContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 273.0
+margin_right = 2680.0
+margin_bottom = 1520.0

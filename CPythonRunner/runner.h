@@ -6,16 +6,20 @@
 
 void *runner_constructor(godot_object *p_instance, void *p_method_data);
 void runner_destructor(godot_object *p_instance, void *p_method_data, void *p_user_data);
-godot_variant runner_get_output(
+godot_variant runner_run_code(
         godot_object *p_instance,
         void *p_method_data,
         void *p_user_data,
         int p_num_args,
         godot_variant **p_args);
 
+
+#define OUTPUT_BUFFER_SIZE 4096
+
 typedef struct runner_data_t {
-    // TODO: use godot_string
-    char buffer[2048];
+    godot_string temp;
+
+    char output[OUTPUT_BUFFER_SIZE + 1];
 } runner_data_t;
 
 
