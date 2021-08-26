@@ -8,21 +8,16 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Object",
-"class": "Util",
-"language": "GDScript",
-"path": "res://Scripts/Utils.gd"
-} ]
-_global_script_class_icons={
-"Util": ""
-}
-
 [application]
 
 config/name="PyCon LT 2021 Integers"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Utils="*res://Scripts/Utils.gd"
+PythonRunner="*res://Scripts/PythonRunner.gd"
 
 [debug]
 

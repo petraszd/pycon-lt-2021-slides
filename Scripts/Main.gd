@@ -15,6 +15,9 @@ var current_idx = NO_SLIDE
 var next_idx = NO_SLIDE
 
 
+#onready var _runner = preload("res://NativeScripts/CPythonRunner.gdns").new()
+
+
 func _ready():
     assert(slides.size() > 0)
     _set_next_slide(0)

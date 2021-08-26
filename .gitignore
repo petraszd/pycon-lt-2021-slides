@@ -3,3 +3,6 @@
 export_presets.cfg
 .DS_Store
 Bin/*
+CPythonRunner/.cache/*
+CPythonRunner/compile_commands.json
+NativeLibs/librunner.dylib

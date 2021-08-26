@@ -5,4 +5,4 @@ export var out_filename = ""
 
 
 func _ready():
-    text = Util.get_file_content(out_filename)
+    text = Utils.get_file_content(out_filename)

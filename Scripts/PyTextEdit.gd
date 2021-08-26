@@ -64,7 +64,7 @@ func _ready():
     _update_editor_colors()
 
     if py_filename != "":
-        text = Util.get_file_content(py_filename)
+        text = Utils.get_file_content(py_filename)
 
 
 func _unhandled_input(event):

@@ -1,0 +1,3 @@
+[submodule "CPythonRunner/godot-headers"]
+	path = CPythonRunner/godot-headers
+	url = git@github.com:godotengine/godot-headers.git

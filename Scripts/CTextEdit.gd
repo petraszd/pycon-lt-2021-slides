@@ -10,7 +10,7 @@ export var color_flow = Color(0.0, 0.0, 0.0)
 
 
 func _ready():
-    text = Util.get_file_content(c_filename)
+    text = Utils.get_file_content(c_filename)
 
     add_color_region('"', '"', color_string)
 
