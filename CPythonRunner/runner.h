@@ -14,12 +14,13 @@ godot_variant runner_run_code(
         godot_variant **p_args);
 
 
-#define OUTPUT_BUFFER_SIZE 4096
+#define BUFFER_SIZE 4096
 
 typedef struct runner_data_t {
-    godot_string temp;
+    godot_string temp_err;
+    godot_string temp_out;
 
-    char output[OUTPUT_BUFFER_SIZE + 1];
+    char buffer[BUFFER_SIZE + 1];
 } runner_data_t;
 
 

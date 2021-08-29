@@ -20,4 +20,4 @@ func _ready():
     struct.append("  ];")
     struct.append("}[/color]")
 
-    $MarginContainer/IntStructure.bbcode_text = struct.join("\n")
+    $IntStructure.bbcode_text = struct.join("\n")

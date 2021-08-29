@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 
+#include "gdnative/array.h"
 #include "pythonenv.h"
 #include "runner.h"
 
@@ -69,9 +70,10 @@ void *runner_constructor(godot_object *p_instance, void *p_method_data)
 {
     pyenv_init(); // TODO: check error code
     runner_data_t *data = core_api->godot_alloc(sizeof(runner_data_t)); // TODO: check if not NULL;
-    data->output[0] = '\0';
+    data->buffer[0] = '\0';
 
-    core_api->godot_string_new(&data->temp);
+    core_api->godot_string_new(&data->temp_out);
+    core_api->godot_string_new(&data->temp_err);
 
     return (void*) data;
 }
@@ -82,7 +84,9 @@ void runner_destructor(godot_object *p_instance, void *p_method_data, void *p_us
 
     runner_data_t *data = (runner_data_t*)(p_user_data);
 
-    core_api->godot_string_destroy(&data->temp);
+    core_api->godot_string_destroy(&data->temp_out);
+    core_api->godot_string_destroy(&data->temp_err);
+
     core_api->godot_free(p_user_data);
 }
 
@@ -93,26 +97,40 @@ godot_variant runner_run_code(
         int p_num_args,
         godot_variant **p_args)
 {
+    godot_variant ret;
+
     runner_data_t *data = (runner_data_t*)p_user_data;
 
     godot_string arg = core_api->godot_variant_as_string(p_args[0]);
     godot_char_string c_str = core_api->godot_string_utf8(&arg);
-    size_t n_code = core_api->godot_char_string_length(&c_str);
     const char *code = core_api->godot_char_string_get_data(&c_str);
 
     core_api->godot_char_string_destroy(&c_str);
 
     assert(p_num_args == 1);
 
-    pyenv_run_code(
-            code,
-            n_code,
-            data->output,
-            OUTPUT_BUFFER_SIZE);
+    pyenv_run_code(code);
 
-    godot_variant ret;
-    core_api->godot_string_parse_utf8(&data->temp, data->output);
-    core_api->godot_variant_new_string(&ret, &data->temp);
+    pyenv_flush_stdout(data->buffer, BUFFER_SIZE);
+    core_api->godot_string_parse_utf8(&data->temp_out, data->buffer);
+
+    pyenv_flush_stderr(data->buffer, BUFFER_SIZE);
+    core_api->godot_string_parse_utf8(&data->temp_err, data->buffer);
+
+    godot_array pipes;
+    core_api->godot_array_new(&pipes);
+
+    godot_variant pipes_item;
+
+    core_api->godot_variant_new_string(&pipes_item, &data->temp_out);
+    core_api->godot_array_push_back(&pipes, &pipes_item);
+    core_api->godot_variant_destroy(&pipes_item);
+
+    core_api->godot_variant_new_string(&pipes_item, &data->temp_err);
+    core_api->godot_array_push_back(&pipes, &pipes_item);
+    core_api->godot_variant_destroy(&pipes_item);
+
+    core_api->godot_variant_new_array(&ret, &pipes);
 
     return ret;
 }
