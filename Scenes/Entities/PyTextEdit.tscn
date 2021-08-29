@@ -9,6 +9,7 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 2 )
+custom_colors/member_variable_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 custom_colors/function_color = Color( 0.419608, 0.858824, 0.403922, 1 )
 highlight_current_line = true
 syntax_highlighting = true
@@ -17,4 +18,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+values_color = Color( 0.921569, 0.580392, 0.2, 1 )
+other_color = Color( 0.741176, 0.796078, 0.227451, 1 )
 flow_color = Color( 0.137255, 0.67451, 0.811765, 1 )
+string_color = Color( 0.996078, 0.882353, 0.2, 1 )

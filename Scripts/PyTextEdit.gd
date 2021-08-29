@@ -6,6 +6,7 @@ export var py_filename = ""
 export var values_color = Color(0, 0, 0) # TODO: select
 export var other_color = Color(0, 0, 0) # TODO: select
 export var flow_color = Color(0, 0, 0)
+export var string_color = Color(0.0, 0.0, 0.0)
 
 
 const VALUES_KEY = "values"
@@ -39,7 +40,7 @@ const keywords_by_key = {
         "del",
         "global",
         "yield",
-        "self"
+        "self",
     ],
     FLOW_KEY: [
         "else",
@@ -62,7 +63,6 @@ const keywords_by_key = {
 
 func _ready():
     _update_editor_colors()
-
     if py_filename != "":
         text = Utils.get_file_content(py_filename)
 
@@ -179,6 +179,11 @@ func _input(event):
 
 func _update_editor_colors():
     clear_colors()
+
+    add_color_region('"', '"', string_color)
+    add_color_region("'", "'", string_color)
+
+
     var color_by_key = {
         VALUES_KEY: values_color,
         OTHER_KEY: other_color,
