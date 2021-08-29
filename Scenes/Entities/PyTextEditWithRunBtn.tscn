@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Entities/PyTextEdit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Fonts/NotoSans-Regular-64.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/PyTextEditWithRunBtn.gd" type="Script" id=3]
+
+[node name="PyTextEditWithRunBtn" type="VBoxContainer"]
+margin_right = 1853.0
+margin_bottom = 1620.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_constants/separation = 20
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PyTextEdit" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1853.0
+margin_bottom = 1460.0
+custom_colors/member_variable_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+values_color = Color( 0.921569, 0.580392, 0.2, 1 )
+
+[node name="RunButton" type="Button" parent="."]
+margin_left = 1603.0
+margin_top = 1480.0
+margin_right = 1853.0
+margin_bottom = 1620.0
+rect_min_size = Vector2( 250, 140 )
+size_flags_horizontal = 8
+custom_fonts/font = ExtResource( 2 )
+text = "Run"
+
+[connection signal="pressed" from="RunButton" to="." method="_on_RunButton_pressed"]

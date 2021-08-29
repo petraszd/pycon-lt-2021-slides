@@ -32,7 +32,6 @@ void GDN_EXPORT godot_gdnative_terminate(godot_gdnative_terminate_options *p_opt
 
 void GDN_EXPORT godot_nativescript_init(void *p_handle)
 {
-    printf("HELLO SAILOR\n");
     godot_instance_create_func create = {
         .create_func = &runner_constructor,
         .free_func = NULL,

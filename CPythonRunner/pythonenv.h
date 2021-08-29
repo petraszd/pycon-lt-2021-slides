@@ -7,7 +7,7 @@
 typedef enum pyenv_init_result {
     PYENV_INIT_OK = 0,
     PYENV_INIT_CAN_NOT_DECODE_PROGRAM_NAME = 1,
-    PYENV_INIT_CAN_REGISTER_STDOUT_MODULE = 2,
+    PYENV_INIT_CAN_NOT_REGISTER_MODULE = 2,
 } pyenv_init_result_e;
 
 pyenv_init_result_e pyenv_init();

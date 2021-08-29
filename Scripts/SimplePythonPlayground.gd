@@ -1,6 +1,5 @@
 extends Node
 
 
-func _on_RunButton_pressed():
-    var python_code = $VBoxContainer/PyTextEdit.text
-    $PythonOutput.set_text(PythonRunner.run_code(python_code))
+func _on_PyTextEditWithRunBtn_after_python_exec(output):
+    $PythonOutput.set_text(output)

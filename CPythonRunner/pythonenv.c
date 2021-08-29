@@ -6,9 +6,16 @@
 
 #define STDOUT_BUFFER_SIZE 4096 /* 4 MB */
 
+
+/* It should be possible to pass Godot object and not use static global objects
+ * But I have no time for that. So globals rules!!!
+ */
 static char stdout_buffer[STDOUT_BUFFER_SIZE + 1]; /* + 1 byte for '\0' */
 static size_t stdout_buffer_idx = 0;
 
+
+/* stdout_capture functions */
+/* ------------------------ */
 static PyObject* stdout_write(PyObject* mod, PyObject* args)
 {
     Py_ssize_t args_size = PyTuple_Size(args);
@@ -85,9 +92,69 @@ PyObject* create_stdout_capture_module()
 }
 
 
-// pyenv_* functions
-// -----------------
+/* pzint functions */
+/* --------------- */
+static PyObject* pzint_inspect(PyObject* mod, PyObject* args)
+{
+    /* Must be one arg */
+    Py_ssize_t args_size = PyTuple_Size(args);
+    if (args_size != 1) {
+        PyErr_SetString(PyExc_TypeError, "inspect() requires 1 argument.");
+        return Py_None;
+    }
 
+    /* It must be an long */
+    PyObject* raw_number = PyTuple_GetItem(args, 0);
+    if (raw_number->ob_type != &PyLong_Type) {
+        PyErr_SetString(PyExc_TypeError, "inspect() argument 1 must be int.");
+        return Py_None;
+    }
+
+    PyLongObject* number = (PyLongObject*)raw_number;
+
+    number->ob_base.ob_size
+
+    /* TODO: return None */
+    return PyLong_FromSsize_t(number->ob_base.ob_size);
+    /*return Py_None;*/
+}
+
+static PyMethodDef pzint_methods[] =
+{
+    {
+        .ml_name  = "inspect",
+        .ml_meth  = &pzint_inspect,
+        .ml_flags = METH_VARARGS,
+        .ml_doc   = NULL,
+    },
+    {
+        .ml_name  = NULL,
+        .ml_meth  = NULL,
+        .ml_flags = 0,
+        .ml_doc   = NULL,
+    }
+};
+
+static PyModuleDef pzint_module = {
+    .m_base     = PyModuleDef_HEAD_INIT,
+    .m_name     = "pzint",
+    .m_doc      = NULL,
+    .m_size     = -1,
+    .m_methods  = pzint_methods,
+    .m_slots    = NULL,
+    .m_traverse = NULL,
+    .m_clear    = NULL,
+    .m_free     = NULL,
+};
+
+PyObject* create_pzint_module()
+{
+    return PyModule_Create(&pzint_module);
+}
+
+
+/* pyenv_* functions */
+/* ----------------- */
 pyenv_init_result_e pyenv_init()
 {
     wchar_t *program_name = Py_DecodeLocale("Slides", NULL);
@@ -96,7 +163,10 @@ pyenv_init_result_e pyenv_init()
     }
 
     if (PyImport_AppendInittab("stdout_capture", &create_stdout_capture_module) == -1) {
-        return PYENV_INIT_CAN_REGISTER_STDOUT_MODULE;
+        return PYENV_INIT_CAN_NOT_REGISTER_MODULE;
+    }
+    if (PyImport_AppendInittab("pzint", &create_pzint_module) == -1) {
+        return PYENV_INIT_CAN_NOT_REGISTER_MODULE;
     }
 
     Py_Initialize();
@@ -105,6 +175,7 @@ pyenv_init_result_e pyenv_init()
             "import stdout_capture\n"
             "sys.stdout = stdout_capture\n"
             "sys.stderr = stdout_capture\n"
+            "import pzint\n"
             );
 
     return PYENV_INIT_OK;
