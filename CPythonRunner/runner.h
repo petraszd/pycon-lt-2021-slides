@@ -12,9 +12,15 @@ godot_variant runner_run_code(
         void *p_user_data,
         int p_num_args,
         godot_variant **p_args);
+godot_variant runner_get_int_structure(
+        godot_object *p_instance,
+        void *p_method_data,
+        void *p_user_data,
+        int p_num_args,
+        godot_variant **p_args);
 
 
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 2048 /* 2 MB */
 
 typedef struct runner_data_t {
     godot_string temp_err;

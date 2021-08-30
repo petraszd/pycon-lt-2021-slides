@@ -4,7 +4,8 @@
 #include "pythonenv.h"
 
 
-#define PIPE_SIZE 4096 /* 4 MB */
+#define PIPE_SIZE 2048 /* 2 MB */
+#define INT_STRUCT_SIZE 512 /* 0.5 MB */
 
 
 /* It should be possible to pass Godot object and not use static global objects
@@ -15,6 +16,9 @@ static size_t stdout_pipe_idx = 0;
 
 static char stderr_pipe[PIPE_SIZE + 1]; /* + 1 byte for '\0' */
 static size_t stderr_pipe_idx = 0;
+
+static char int_struct[INT_STRUCT_SIZE + 1];
+static size_t int_struct_idx = 0;
 
 
 /* stdout_capture functions */
@@ -193,9 +197,38 @@ static PyObject* pzint_inspect(PyObject* mod, PyObject* args)
 
     PyLongObject* number = (PyLongObject*)raw_number;
 
-    /* TODO: return None */
-    return PyLong_FromSsize_t(number->ob_base.ob_size);
-    /*return Py_None;*/
+    int_struct[0] = '\0';
+    int_struct_idx = 0;
+
+    int n_written;
+    n_written = snprintf(
+            int_struct, INT_STRUCT_SIZE,
+            "%ld,%ld",
+            number->ob_base.ob_base.ob_refcnt,
+            number->ob_base.ob_size);
+
+    if (n_written <= 0) {
+        return Py_None;
+    }
+    int_struct_idx = n_written;
+
+    int real_size = number->ob_base.ob_size > 0 ? number->ob_base.ob_size : -number->ob_base.ob_size;
+    for (int i = 0; i < real_size; ++i) {
+        if (int_struct_idx >= INT_STRUCT_SIZE) {
+            break;
+        }
+        n_written = snprintf(
+                int_struct + int_struct_idx, INT_STRUCT_SIZE - int_struct_idx,
+                ",%d",
+                number->ob_digit[i]);
+        if (n_written <= 0) {
+            break;
+        }
+        int_struct_idx += n_written;
+    }
+
+    int_struct[INT_STRUCT_SIZE] = '\0';
+    return Py_None;
 }
 
 static PyMethodDef pzint_methods[] =
@@ -292,3 +325,11 @@ void pyenv_flush_stderr(char* out, size_t n_out)
     stderr_pipe[0] = '\0';
     stderr_pipe_idx = 0;
 }
+
+void pyenv_get_int_structure(char* out, size_t n_out)
+{
+    size_t n = int_struct_idx > n_out ? n_out : int_struct_idx;
+    strncpy(out, int_struct, n);
+    out[n] = '\0'; /* It is assumes that output size is n_output + 1 */
+}
+
