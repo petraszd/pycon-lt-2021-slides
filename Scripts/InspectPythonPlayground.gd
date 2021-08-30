@@ -3,7 +3,6 @@ extends HBoxContainer
 export var default_color = Color(0, 0, 0)
 export var value_color = Color(0, 0, 0)
 
-
 var DEFAULT_REFCNT = "Unknown"
 var DEFAULT_TYPE = "Unknown"
 var DEFAULT_SIZE = "Unknown"
@@ -27,6 +26,14 @@ func _on_PyTextEditWithRunBtn_after_python_exec(stdout, stderr):
     else:
         _update_vals(PythonRunner.get_int_structure())
         _redraw_int_structure()
+
+        # Hack, hack, a horrible hack
+        # ------------------------------------
+        if digit_vals.size() == 1 and digit_vals[0] == "42":
+            var mainScene = get_tree().current_scene
+            if mainScene.name == "Main":
+                mainScene.show_particles_and_move_to_next_slide()
+        # ---------------------------
 
 
 func _reset_vals():

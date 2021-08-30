@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Entities/MainWrapper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Fonts/NotoSans-Regular-96.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Entities/TitleSeparator.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Entities/InspectPythonPlayground.tscn" type="PackedScene" id=4]
 
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+"
+
 [node name="Slide_09" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

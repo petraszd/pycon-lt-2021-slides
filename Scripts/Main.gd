@@ -53,6 +53,10 @@ func switch_current_to_next():
     next_idx = NO_SLIDE
 
 
+func show_particles_and_move_to_next_slide():
+    print("TODO")
+
+
 func _set_next_slide(idx):
     if current_idx == NO_SLIDE:
         current_idx = idx
