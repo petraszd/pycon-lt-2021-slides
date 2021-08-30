@@ -3,10 +3,11 @@ extends TextEdit
 
 export var py_filename = ""
 
-export var values_color = Color(0, 0, 0) # TODO: select
-export var other_color = Color(0, 0, 0) # TODO: select
+export var values_color = Color(0, 0, 0)
+export var other_color = Color(0, 0, 0)
 export var flow_color = Color(0, 0, 0)
-export var string_color = Color(0.0, 0.0, 0.0)
+export var string_color = Color(0, 0, 0)
+export var comment_color = Color(0, 0, 0)
 
 
 const VALUES_KEY = "values"
@@ -180,6 +181,7 @@ func _input(event):
 func _update_editor_colors():
     clear_colors()
 
+    add_color_region("#", "", comment_color, true)
     add_color_region('"', '"', string_color)
     add_color_region("'", "'", string_color)
 
