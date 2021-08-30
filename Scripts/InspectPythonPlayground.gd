@@ -20,16 +20,13 @@ func _ready():
 
 
 func _on_PyTextEditWithRunBtn_after_python_exec(stdout, stderr):
+    $CombinedOutput/PythonOutput.set_text(stdout + stderr)
     if stderr:
         _reset_vals()
         _redraw_int_structure()
-
-        $IntStructure.bbcode_text = stderr
     else:
         _update_vals(PythonRunner.get_int_structure())
         _redraw_int_structure()
-        if stdout:
-            $IntStructure.bbcode_text += "\n\n%s" % stdout
 
 
 func _reset_vals():
@@ -49,7 +46,7 @@ func _update_vals(raw_struct):
     var struct_items = raw_struct.split(",")
     if struct_items.size() < 3:
         # Should not happen
-        $IntStructure.bbcode_text = "ERROR PARSING LIB OUTPUT"
+        $CombinedOutput/IntStructure.bbcode_text = "ERROR PARSING LIB OUTPUT"
         return
 
     refcnt_val = struct_items[0]
@@ -82,4 +79,4 @@ func _redraw_int_structure():
         arr.append("  ];")
     arr.append("}[/color]")
 
-    $IntStructure.bbcode_text = arr.join("\n")
+    $CombinedOutput/IntStructure.bbcode_text = arr.join("\n")

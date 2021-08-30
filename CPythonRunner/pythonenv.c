@@ -213,7 +213,7 @@ static PyObject* pzint_inspect(PyObject* mod, PyObject* args)
     int_struct_idx = n_written;
 
     int real_size = number->ob_base.ob_size > 0 ? number->ob_base.ob_size : -number->ob_base.ob_size;
-    for (int i = 0; i < real_size; ++i) {
+    for (size_t i = 0; i < real_size; ++i) {
         if (int_struct_idx >= INT_STRUCT_SIZE) {
             break;
         }
@@ -231,11 +231,45 @@ static PyObject* pzint_inspect(PyObject* mod, PyObject* args)
     return Py_None;
 }
 
+static PyObject* pzint_get_parts(PyObject* mod, PyObject* args)
+{
+    /* Must be one arg */
+    Py_ssize_t args_size = PyTuple_Size(args);
+    if (args_size != 1) {
+        PyErr_SetString(PyExc_TypeError, "get_parts() requires 1 argument.");
+        return Py_None;
+    }
+
+    /* It must be an long */
+    PyObject* raw_number = PyTuple_GetItem(args, 0);
+    if (raw_number->ob_type != &PyLong_Type) {
+        PyErr_SetString(PyExc_TypeError, "get_parts() argument 1 must be int.");
+        return Py_None;
+    }
+
+    PyLongObject* number = (PyLongObject*)raw_number;
+    int real_size = number->ob_base.ob_size > 0 ? number->ob_base.ob_size : -number->ob_base.ob_size;
+
+    PyObject* ret = PyList_New(real_size);
+    PyObject* part;
+    for (size_t i = 0; i < real_size; ++i) {
+        part = PyLong_FromLong(number->ob_digit[i]);
+        PyList_SetItem(ret, i, part);
+    }
+    return ret;
+}
+
 static PyMethodDef pzint_methods[] =
 {
     {
         .ml_name  = "inspect",
         .ml_meth  = &pzint_inspect,
+        .ml_flags = METH_VARARGS,
+        .ml_doc   = NULL,
+    },
+    {
+        .ml_name  = "get_parts",
+        .ml_meth  = &pzint_get_parts,
         .ml_flags = METH_VARARGS,
         .ml_doc   = NULL,
     },

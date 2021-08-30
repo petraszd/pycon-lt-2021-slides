@@ -1,4 +1,4 @@
-extends Panel
+extends Node
 
 
 func set_text(new_text):

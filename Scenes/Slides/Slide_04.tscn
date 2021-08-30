@@ -50,6 +50,8 @@ margin_bottom = 1247.0
 c_filename = "assembly.c"
 
 [node name="CodeRunStaticOutput" parent="MainWrapper/VBoxContainer/HBoxContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 1390.0
 margin_right = 2680.0
 margin_bottom = 1247.0

@@ -1,23 +1,28 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/Roboto-Mono-36.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scripts/PythonOutput.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Entities/PythonOutputStyle.tres" type="StyleBox" id=3]
 
-[node name="PythonOutput" type="Panel"]
+[node name="PythonOutput" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = ExtResource( 3 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 2880.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 0, 8 )
+color = Color( 0.321569, 0.588235, 0.388235, 1 )
+
 [node name="Scroll" type="ScrollContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_top = 16.0
+margin_right = 2880.0
+margin_bottom = 1620.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -26,7 +31,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Scroll"]
 margin_right = 2880.0
-margin_bottom = 1620.0
+margin_bottom = 1604.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_top = 25
@@ -38,7 +43,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Scroll/MarginContainer"]
 margin_top = 25.0
 margin_right = 2880.0
-margin_bottom = 1520.0
+margin_bottom = 1504.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )

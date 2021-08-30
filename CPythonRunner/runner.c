@@ -110,6 +110,8 @@ godot_variant runner_run_code(
         int p_num_args,
         godot_variant **p_args)
 {
+    assert(p_num_args == 1);
+
     godot_variant ret;
 
     runner_data_t *data = (runner_data_t*)p_user_data;
@@ -118,11 +120,8 @@ godot_variant runner_run_code(
     godot_char_string c_str = core_api->godot_string_utf8(&arg);
     const char *code = core_api->godot_char_string_get_data(&c_str);
 
-    core_api->godot_char_string_destroy(&c_str);
-
-    assert(p_num_args == 1);
-
     pyenv_run_code(code);
+    core_api->godot_char_string_destroy(&c_str);
 
     pyenv_flush_stdout(data->buffer, BUFFER_SIZE);
     core_api->godot_string_parse_utf8(&data->temp_out, data->buffer);
