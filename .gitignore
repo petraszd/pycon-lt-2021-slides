@@ -4,5 +4,7 @@ export_presets.cfg
 .DS_Store
 Bin/*
 CPythonRunner/.cache/*
+CPythonRunner/*.os
+CPythonRunner/*.o
 CPythonRunner/compile_commands.json
 NativeLibs/librunner.dylib

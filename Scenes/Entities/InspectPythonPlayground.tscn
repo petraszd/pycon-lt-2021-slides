@@ -14,7 +14,7 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-default_color = Color( 0.344, 0.3655, 0.43, 1 )
+default_color = Color( 0.375, 0.5, 0.45625, 1 )
 
 [node name="PyTextEditWithRunBtn" parent="." instance=ExtResource( 1 )]
 
@@ -27,3 +27,5 @@ size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 2 )
 custom_colors/default_color = Color( 0.133333, 0.223529, 0.054902, 1 )
 bbcode_enabled = true
+
+[connection signal="after_python_exec" from="PyTextEditWithRunBtn" to="." method="_on_PyTextEditWithRunBtn_after_python_exec"]
