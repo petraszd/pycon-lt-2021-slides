@@ -1,22 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Scenes/Entities/ParticlesFor42.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Entities/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
+[ext_resource path="res://Animation/SwitchSlides.tres" type="Animation" id=4]
 
 [sub_resource type="Animation" id=1]
-resource_name = "SwitchSlides"
-length = 2.5
+resource_name = "ShowParticlesFor42"
+length = 8.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("CurrentSlidePlace:modulate")
+tracks/0/path = NodePath("ParticlesFor42:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 1.7, 2.5 ),
-"transitions": PoolRealArray( 0.5, 2, 0.5, 2 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"times": PoolRealArray( 0, 0.1, 6, 6.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true, false ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -25,7 +27,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.6 ),
+"times": PoolRealArray( 4.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -46,4 +48,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/SwitchSlides = SubResource( 1 )
+anims/ShowParticlesFor42 = SubResource( 1 )
+anims/SwitchSlides = ExtResource( 4 )
+
+[node name="ParticlesFor42" parent="." instance=ExtResource( 1 )]

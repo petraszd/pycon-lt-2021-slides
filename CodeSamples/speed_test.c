@@ -13,6 +13,6 @@ int main(int argc, char *argv[])
         }
         i++;
     }
-    printf("%lld\n", res);
+    printf("%lld", res);
     return 0;
 }

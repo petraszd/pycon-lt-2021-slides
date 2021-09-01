@@ -18,13 +18,13 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainWrapper"]
 margin_left = 100.0
-margin_top = 100.0
+margin_top = 50.0
 margin_right = 2780.0
-margin_bottom = 1520.0
+margin_bottom = 1570.0
 
 [node name="Title" type="Label" parent="MainWrapper/VBoxContainer"]
 margin_right = 2680.0
-margin_bottom = 132.0
+margin_bottom = 99.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.133333, 0.223529, 0.054902, 1 )
 text = "What is an Integer?"
@@ -34,14 +34,14 @@ __meta__ = {
 
 [node name="TitleSeparator" parent="MainWrapper/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_top = 140.0
+margin_top = 107.0
 margin_right = 2680.0
-margin_bottom = 298.0
+margin_bottom = 265.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MainWrapper/VBoxContainer"]
-margin_top = 306.0
+margin_top = 273.0
 margin_right = 2680.0
-margin_bottom = 576.0
+margin_bottom = 543.0
 custom_fonts/italics_font = ExtResource( 5 )
 custom_fonts/bold_font = ExtResource( 6 )
 custom_fonts/normal_font = ExtResource( 4 )
@@ -56,15 +56,15 @@ The set of integers consists of zero, the whole numbers, and their additive inve
 fit_content_height = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MainWrapper/VBoxContainer"]
-margin_top = 584.0
+margin_top = 551.0
 margin_right = 2680.0
-margin_bottom = 834.0
+margin_bottom = 801.0
 custom_constants/margin_top = 250
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="MainWrapper/VBoxContainer"]
-margin_top = 842.0
+margin_top = 809.0
 margin_right = 2680.0
-margin_bottom = 1022.0
+margin_bottom = 989.0
 custom_fonts/italics_font = ExtResource( 5 )
 custom_fonts/bold_font = ExtResource( 6 )
 custom_fonts/normal_font = ExtResource( 4 )

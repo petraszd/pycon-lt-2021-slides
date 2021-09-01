@@ -13,12 +13,10 @@ var slides = [
     preload("res://Scenes/Slides/Slide_07.tscn").instance(),
     preload("res://Scenes/Slides/Slide_08.tscn").instance(),
     preload("res://Scenes/Slides/Slide_09.tscn").instance(),
+    preload("res://Scenes/Slides/Slide_10.tscn").instance(),
 ]
 var current_idx = NO_SLIDE
 var next_idx = NO_SLIDE
-
-
-#onready var _runner = preload("res://NativeScripts/CPythonRunner.gdns").new()
 
 
 func _ready():
@@ -54,7 +52,9 @@ func switch_current_to_next():
 
 
 func show_particles_and_move_to_next_slide():
-    print("TODO")
+    var view_size = get_viewport().size
+    $ParticlesFor42.position = view_size * 0.5
+    $AnimationPlayer.play("ShowParticlesFor42")
 
 
 func _set_next_slide(idx):

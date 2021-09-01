@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Images/PythonLogo.png" type="Texture" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.581505, 0.810811 ), -1.95423, -1.95423, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.25, 0.9, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="ParticlesFor42" type="CPUParticles2D"]
+emitting = false
+amount = 500
+lifetime = 2.0
+lifetime_randomness = 0.3
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 2000, 1000 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, 0 )
+angle = 360.0
+angle_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 0.36
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+hue_variation = 0.05
+hue_variation_random = 0.64
