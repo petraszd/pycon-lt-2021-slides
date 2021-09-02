@@ -54,6 +54,8 @@ func switch_current_to_next():
 func show_particles_and_move_to_next_slide():
     var view_size = get_viewport().size
     $ParticlesFor42.position = view_size * 0.5
+
+    next_idx = current_idx + 1
     $AnimationPlayer.play("ShowParticlesFor42")
 
 
